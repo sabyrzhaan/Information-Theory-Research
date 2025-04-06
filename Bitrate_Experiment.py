@@ -9,7 +9,7 @@ def calculate_psnr(img1, img2):
     PIXEL_MAX = 255.0
     return 20 * np.log10(PIXEL_MAX / np.sqrt(mse))
 
-video_path = '/Users/sabyrzhanolzhabay/PycharmProjects/pythonProject/ICT/sample_movie.mp4'
+video_path = 'sample_movie.mp4'
 cap = cv2.VideoCapture(video_path)
 
 # Read all frames into memory (for testing)
