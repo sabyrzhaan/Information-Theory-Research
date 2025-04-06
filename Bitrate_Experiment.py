@@ -9,10 +9,11 @@ def calculate_psnr(img1, img2):
     PIXEL_MAX = 255.0
     return 20 * np.log10(PIXEL_MAX / np.sqrt(mse))
 
-video_path = 'sample_movie.mp4'
+video_path = '/Users/sabyrzhanolzhabay/PycharmProjects/pythonProject/ICT/sample_movie.mp4'
 cap = cv2.VideoCapture(video_path)
+fps = cap.get(cv2.CAP_PROP_FPS)
+print(f"Original FPS: {fps}")
 
-# Read all frames into memory (for testing)
 frames = []
 while cap.isOpened():
     ret, frame = cap.read()
@@ -22,12 +23,12 @@ while cap.isOpened():
     frames.append(frame_resized)
 cap.release()
 
-# Save compressed video using default settings
 fourcc = cv2.VideoWriter_fourcc(*'mp4v')
-out = cv2.VideoWriter('output.mp4', fourcc, 20.0, (640, 480))
+out = cv2.VideoWriter('output.mp4', fourcc, fps, (640, 480))
 for frame in frames:
     out.write(frame)
 out.release()
+
 
 # Read compressed video
 cap2 = cv2.VideoCapture('output.mp4')
